@@ -1,0 +1,99 @@
+#postlink-form .postlink-type {
+	background-color: #fff;
+	border: 1px solid #dfdfdf;
+	border-radius: 3px;
+	margin-bottom: 1em;
+	margin: 1em 0;
+	position: relative;
+	transition: background-color 0.35s;
+}
+
+#postlink-form div {
+/*	background-color: #fff;*/
+/*	transition: background-color 1s;*/
+}
+
+#postlink-form div.pulse {
+	background-color: #6cbc4f;
+	transition: background-color 0.35s;
+}
+
+#postlink-errors {
+	margin-left: 1em;
+}
+
+#postlink-form .postlink-rows {
+	padding: 1em;
+}
+
+#postlink-form .postlink-row {
+	margin-bottom: 0.2em;
+}
+
+#postlink-form .add-link {
+	background-color: #f7f7f7;
+	border-top: 1px solid #dfdfdf;
+	padding: 1em;
+}
+
+#postlink-form h3 {
+	margin-top: 0;
+	margin-bottom: 1em;
+	padding: 0;
+}
+
+#postlink-form .icon {
+	display: inline;
+	/*-webkit-font-smoothing: antialiased;*/
+	font-family: dashicons;
+}
+
+#postlink-form .link-back {
+	color: #aaa;
+	font-weight: normal;
+}
+
+#postlink-form .close-link {
+	color: #666;
+	position: absolute;
+	top: 0.12em;
+	right: 0.3em;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 24px;
+	line-height: 1;
+}
+
+#postlink-form .template {
+	display: none;
+}
+
+#postlink-form .form-block {
+	display: inline-block;
+	margin-right: 0.75em;
+}
+
+#postlink-form .postlink-connection {
+	margin-right: 1em;
+}
+
+#postlink-form .form-block:last-child {
+	margin-right: 0;
+}
+
+#postlink-form .add-type label {
+	display: block;
+	margin-bottom: 0.3em;
+}
+
+#postlink-form .delete-link {
+	text-decoration: none
+}
+
+#postlink-form #link-type-button:active {
+	vertical-align: inherit;
+}
+
+#postlink-form .rev-link {
+	color: #aaa;
+}
