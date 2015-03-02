@@ -66,8 +66,17 @@ class postlink_cpt {
 		);
 	}
 
-	// Custom frontend stuff
-
+	/**
+	 * The postlink CPR doesn't have it's own archive as would normally be the
+	 * case. Instead the following methods create a custom rewrite endpoint (find) that
+	 * displays the connected posts of a given type.
+	 *
+	 * Example:
+	 *
+	 * If we have a post describing an actor at [permalink], and a postlink named
+	 * 'appears-in', then we might find the shows this actor appears in at
+	 * [permalink]/find/appears-in/
+	 */
 	public static function add_endpoint() {
 		add_rewrite_endpoint( 'find', EP_PERMALINK );
 	}
@@ -100,7 +109,7 @@ class postlink_cpt {
 			$link_type = get_posts($link_args);
 			$link_type_id = $link_type[0]->ID;
 
-			// Save this to a transient for use in the title.
+			// Save this to the cache for use in the title.
 			wp_cache_set( 'postlink_type_id', $link_type_id );
 
 			// JOIN
