@@ -9,8 +9,8 @@ function remove( el ) {
 
 var postlinkForm = (function( $ ) {
 	var linkTypes = {},
-		typeDiv  = document.getElementById( 'postlink-types' ),
-		deleteDiv  = document.getElementById( 'delete-links' ),
+		typeDiv = document.getElementById( 'postlink-types' ),
+		deleteDiv = document.getElementById( 'delete-links' ),
 		addTypeInput = document.getElementById( 'link-type-input' ),
 		addTypeIdInput = document.getElementById( 'link-type-id-input' ),
 		addRevTypeInput = document.getElementById( 'reverse-link-type-input' ),
@@ -20,7 +20,7 @@ var postlinkForm = (function( $ ) {
 		nonce = document.getElementById( 'postlink_update_nonce' ).value;
 
 	function init() {
-		// Look for any boxes created in php and sut them up.
+		// Look for any boxes created in php and set them up.
 		var existingTypes = document.getElementsByClassName( 'postlink-type' );
 		for ( var i = 0, len = existingTypes.length; i < len; i++ ) {
 			addExisting( existingTypes[i] );
