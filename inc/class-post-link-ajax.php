@@ -26,7 +26,7 @@ class postlink_ajax {
 		foreach ( $posts as $key => $post ) {
 			$results[$key]['label'] = esc_html( $post->post_title );
 			$results[$key]['value'] = esc_html( $post->ID );
-			$results[$key]['append'] = '<span style="color: #999; margin: 0 8px">' . esc_html( apply_filters( 'postlink_append_info', '', $post ) ) . '</span>';
+			$results[$key]['append'] = ' <span class="post-type">' . esc_html( '(' . $post->post_type . ')' ) . '</span>';
 		}
 
 		if ( ! isset( $results ) ) {

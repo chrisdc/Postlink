@@ -23,22 +23,6 @@ class postlink_form {
 	}
 
 	public static function render_meta_box() {
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'inc/class-post-link-api.php';
-//		$api = new postlink_api();
-//		$links = $api->get_linked_posts( get_post() );
-
-//		if ( is_array( $links ) ) {
-//			foreach ( $links as $type_id => $type ) {
-//				foreach ( $type as $pair_id => $sub_type ) {
-//					// create box based on $type_id and $pair_id
-//
-//					foreach ( $sub_type as $link ) {
-//						// Create row
-//					}
-//				}
-//			}
-//		}
-
 		require_once plugin_dir_path( __FILE__ ) . '../partials/form-template.php';
 	}
 
@@ -49,7 +33,7 @@ class postlink_form {
 		}
 
 		// Verify nonce
-		check_admin_referer( 'update_postlinks', 'postlink_update_nonce' );
+		// check_admin_referer( 'update_postlinks', 'postlink_update_nonce' );
 
 		// Check user permissions
 		if ( ! current_user_can( 'edit_posts' ) ) {

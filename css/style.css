@@ -18,6 +18,11 @@
 	transition: background-color 0.35s;
 }
 
+.ui-widget-content span.post-type {
+	color: #999;
+	margin: 0 4px;
+}
+
 #postlink-errors {
 	margin-left: 1em;
 }
