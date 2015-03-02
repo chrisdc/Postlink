@@ -71,10 +71,6 @@ class postlink_api {
 		return;
 	}
 
-	public function get_endpoint_links( $post, $post_link ) {
-		// Use current post by default.
-	}
-
 	// Used in admin to populate the form.
 	public function get_linked_posts( $post ) {
 		global $wpdb;
@@ -108,10 +104,29 @@ class postlink_api {
 		return $results;
 	}
 
-	public function get_linked_posts_of_type( $post_link ) {
-//		if ( isset $post_link ) {
-//			$query .= " AND link_type_id = $post_link"
-//		}
+	public function get_linked_posts_of_type( $post, $post_link ) {
+		global $wp_query;
+		global $wpdb;
+
+		$table = $wpdb->prefix . "postlink_intersect";
+		$q = $wp_query->query_vars;
+
+		$post = get_post( $post );
+		$original_id = isset( $post->ID ) ? $post->ID : 0;
+
+		$post_link = get_post( $post_link );
+		$post_link_id = isset( $post_link->ID ) ? $post_link->ID : 0;
+
+		$results = $wpdb->get_results(
+			"
+				SELECT * FROM $table
+				JOIN $table ON $wpdb->posts.ID = $table.target_id
+				WHERE source_id = $original_id AND $wpdb->posts.post_status = 'publish' AND link_type_id = $post_link_id
+			",
+			ARRAY_A
+		);
+
+		wp_cache_set( 'postlink_type_id', $link_type_id );
 	}
 
 	public function create_link_type( $title ) {
@@ -165,7 +180,7 @@ class postlink_api {
 			$this->pair_links( $insert_id, $pair_id );
 		}
 
-		// We're connecting a new post, so delete the transient.
+		// Flush any transients associated with the source post.
 		delete_transient( 'postlink_' . $post1_id );
 
 		return $insert_id;
