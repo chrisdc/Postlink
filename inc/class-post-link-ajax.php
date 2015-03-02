@@ -39,28 +39,28 @@ class postlink_ajax {
 
 	public static function search_postlinks() {
 		// Check nonce
-//		check_ajax_referer( 'update_postlinks', 'nonce' );
+		if( check_ajax_referer( 'update_postlinks', 'postlink_update_nonce' false ) ) {
+			if ( ! current_user_can( 'edit_posts' ) ) {
+				wp_die( __( 'You do not have permission to edit posts.', 'postlink' ) );
+			}
 
-		if ( ! current_user_can( 'edit_posts' ) ) {
-			wp_die( __( 'You do not have permission to edit posts.', 'postlink' ) );
+			$posts = get_posts( array(
+				's' => sanitize_text_field( $_REQUEST['text'] ),
+				'post_type' => 'postlink'
+			));
+
+			foreach ( $posts as $key => $post ) {
+				$results[$key]['label'] = esc_html( $post->post_title );
+				$results[$key]['value'] = esc_html( $post->ID );
+			}
+
+			if ( ! isset( $results ) ) {
+				return false;
+			}
+
+			echo json_encode( $results );
+			exit();
 		}
-
-		$posts = get_posts( array(
-			's' => sanitize_text_field( $_REQUEST['text'] ),
-			'post_type' => 'postlink'
-		));
-
-		foreach ( $posts as $key => $post ) {
-			$results[$key]['label'] = esc_html( $post->post_title );
-			$results[$key]['value'] = esc_html( $post->ID );
-		}
-
-		if ( ! isset( $results ) ) {
-			return false;
-		}
-
-		echo json_encode( $results );
-		exit();
 	}
 }
 
