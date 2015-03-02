@@ -71,8 +71,7 @@ class postlink_cpt {
 	 * case. Instead the following methods create a custom rewrite endpoint (find) that
 	 * displays the connected posts of a given type.
 	 *
-	 * Example:
-	 *
+	 * EXAMPLE:
 	 * If we have a post describing an actor at [permalink], and a postlink named
 	 * 'appears-in', then we might find the shows this actor appears in at
 	 * [permalink]/find/appears-in/
@@ -153,11 +152,13 @@ class postlink_cpt {
 	}
 
 	public static function archive_title( $title ) {
-		$link_type_id = wp_cache_get( 'postlink_type_id' );
-		$link_type_name = get_the_title( $link_type_id );
+		if ( isset( $wp_query->query_vars['find'] ) ) {
+			$link_type_id = wp_cache_get( 'postlink_type_id' );
+			$link_type_name = get_the_title( $link_type_id );
 
-		$original_title = get_the_title();
-		$title = esc_html( $link_type_name . ' ' . $original_title );
+			$original_title = get_the_title();
+			$title = esc_html( $link_type_name . ' ' . $original_title );
+		}
 
 		return $title;
 	}
